@@ -7,7 +7,6 @@
 
 typedef struct threadpool_t {
         queue_t *task_queue;
-        thread_t *thread_stat;
         pthread_mutex_t qlock;
         int nthreads;
         int is_exit;
@@ -15,6 +14,7 @@ typedef struct threadpool_t {
 
 int threadpool_init(threadpool_t **tpool);
 int threadpool_set(threadpool_t *tpool, int nthreads);
-int threadpool_add_task(threadpool *tpool, void * (*task)(void *));
+int threadpool_add_task(threadpool_t *tpool, task_t *task);
 int threadpool_run(threadpool_t *tpool);
+int threadpool_exit();
 #endif
