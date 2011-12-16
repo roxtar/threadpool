@@ -1,0 +1,19 @@
+Thread Pool Implementation using Pthreads
+
+/* Initialize the threadpool with "num_threads" number of threads */
+int threadpool_init(int num_threads);
+
+/* Reset the current number of threads in the pool to "num_threads".
+ * If "num_threads" is less than the currently executing threads, 
+ * then this number is reduced as the threads finish executing. 
+ * Otherwise, new threads are created. */
+int threadpool_set(int num_threads);
+
+/* Run the "task" in the threadpool */
+int threadpool_run_task((void *)(*task)(void *));
+
+/* Wait for all threads to finish and exit */
+int threadpool_exit();
+
+/* Abort execution of all threads and exit */
+int threadpool_abort();
