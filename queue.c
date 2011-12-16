@@ -3,7 +3,7 @@
 #include <errno.h>
 #include <string.h>
 
-int init(queue_t **q) {
+int queue_init(queue_t **q) {
         *q = (queue_t *) malloc(sizeof(queue_t));
         if(*q == NULL) 
                 return -ENOMEM;
@@ -12,7 +12,7 @@ int init(queue_t **q) {
 }
 
 int
-add(queue_t *q, task_t *task) {
+queue_add(queue_t *q, task_t *task) {
         node_t *current;
         if(q == NULL)
                 return -ENULL;
@@ -20,7 +20,7 @@ add(queue_t *q, task_t *task) {
         if(current == NULL) 
                 return -ENOMEM;
         current->task = task;
-        if(q->head == NULL)
+        if(queue_is_empty(q))
                 q->head = current;
         else 
                 q->tail->next = current;
@@ -29,10 +29,10 @@ add(queue_t *q, task_t *task) {
 }
 
 int
-remove(queue_t *q, task_t *task) {
-        if(q == NULL)
+queue_remove(queue_t *q, task_t *task) {
+        if(q == NULL) 
                 return -ENULL;
-        if(q->head == NULL) 
+        if(queue_is_empty(q)) 
                 return -EEMPTY;
         else {
                 node_t *old_head = q->head;
@@ -46,9 +46,14 @@ remove(queue_t *q, task_t *task) {
 }
 
 int 
-is_empty(queue_t *q) {
+queue_is_empty(queue_t *q) {
         if(!q)
                 return -ENULL;
         return (q->head == NULL);
 }
 
+int
+queue_destroy(queue_t **q) {
+        free(*q);
+        return 0;
+}

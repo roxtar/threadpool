@@ -17,15 +17,18 @@ typedef struct queue_t {
 } queue_t;
 
 /* Initialize a queue. */
-int init(queue_t **q);
+int queue_init(queue_t **q);
 
 /* Add task to the tail of the queue. */
-int add(queue_t *q, task_t *task);
+int queue_add(queue_t *q, task_t *task);
 
 /* Remove a task from the head of the queue. */
-int remove(queue_t *q, task_t *task);
+int queue_remove(queue_t *q, task_t *task);
 
 /* Returns non-zero if the queue is empty. */
-int is_empty(queue_t *q);
+int queue_is_empty(queue_t *q);
+
+/* Free the queue. */
+int queue_destroy(queue_t **q);
 
 #endif
