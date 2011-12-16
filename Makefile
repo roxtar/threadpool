@@ -9,7 +9,7 @@ queue_test.c: queue.h
 	$(CC) $(CFLAGS) -c $<
 
 queue_test: queue_test.c queue.o
-	$(CC) $(CFLAGS) $? -o $@	
+	$(CC) $(CFLAGS) $^ -o $@	
 
 test: queue_test
 	./queue_test

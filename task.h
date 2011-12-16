@@ -3,5 +3,6 @@
 
 typedef struct task_t {
     void * (*task) (void *);
+    void * args;
 }task_t;
 #endif

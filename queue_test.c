@@ -24,8 +24,8 @@ void * test2(void *p) {
 
 int main() {
         queue_t *q;
-        task_t t1 = { test1 };
-        task_t t2 = { test2 };
+        task_t t1 = { test1, (void *) 0};
+        task_t t2 = { test2, (void *) 0};
         task_t t;
 
         int rc = queue_init(&q);
